@@ -84,7 +84,7 @@ export default function MovieDetails() {
                 src={
                   movie.poster_path
                     ? `${IMAGE_BASE_URL}${movie.poster_path}`
-                    : "https://via.placeholder.com/500x750?text=No+Image+Available"
+                    : `/img/no-movie.png`
                 }
                 alt={movie.title}
               />

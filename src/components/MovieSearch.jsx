@@ -52,12 +52,15 @@ const MovieSearch = () => {
         setTotalPages(response.data.total_pages);
 
         // Update localStorage with the current query, results, and pagination
-        localStorage.setItem("movieSearchResults", JSON.stringify({
-          query,
-          results,
-          currentPage: page,
-          totalPages: response.data.total_pages,
-        }));
+        localStorage.setItem(
+          "movieSearchResults",
+          JSON.stringify({
+            query,
+            results,
+            currentPage: page,
+            totalPages: response.data.total_pages,
+          })
+        );
       }
     } catch (err) {
       setError("Failed to fetch movies.");
@@ -80,14 +83,17 @@ const MovieSearch = () => {
     setCurrentPage(page);
     fetchMovies(input, page);
 
-     // Save updated pagination data to localStorage
+    // Save updated pagination data to localStorage
     const storedData = localStorage.getItem("movieSearchResults");
     if (storedData) {
       const parsedData = JSON.parse(storedData);
-      localStorage.setItem("movieSearchResults", JSON.stringify({
-        ...parsedData,      // Spread the previous data
-        currentPage: page,  // Update currentPage in localStorage
-      }));
+      localStorage.setItem(
+        "movieSearchResults",
+        JSON.stringify({
+          ...parsedData, // Spread the previous data
+          currentPage: page, // Update currentPage in localStorage
+        })
+      );
     }
   };
 
@@ -128,7 +134,7 @@ const MovieSearch = () => {
                   src={
                     movie.poster_path
                       ? `${IMAGE_BASE_URL}${movie.poster_path}`
-                      : "https://via.placeholder.com/500x750?text=No+Image+Available"
+                      : `/img/no-movie.png`
                   }
                   alt={movie.title}
                 />
